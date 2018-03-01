@@ -27,8 +27,15 @@
           </li>
         </div>
       </ul>
+
       <p appBasicHighlight>Basic Style Test</p>
-      <p appBetterHighlight>Better Style Test</p>
+
+      <p appBetterHighlight
+      mouseDownColor='orange'
+      [mouseEnterColor]="'pink'"
+      >
+        Better Style Test
+      </p>
       <ng-template [ngIf]="onlyOdd">
         <p>Only odd</p>
       </ng-template>
