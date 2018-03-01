@@ -16,6 +16,8 @@
             {{number}}
           </li>
         </div>
+
+        <!-- Here is the easier way to do the list with *ngIf and *ngFor -->
         <div *ngIf="!onlyOdd">
           <li
             class="list-group-item"
@@ -26,6 +28,22 @@
             {{number}}
           </li>
         </div>
+
+        <!-- Here is an ng-template way of showing the even numbers (a 2nd time) -->
+        <ng-template [ngIf]="!onlyOdd">
+          <ng-template ngFor let-number [ngForOf]="evenNumbers">
+            <li
+              class="list-group-item"
+              [ngClass]="{even: number %2 ==0}"
+              [ngStyle]="{backgroundColor: number %2 !== 0 ? 'yellow' : 'transparent'}"
+            >
+              {{number}}
+            </li>
+          </ng-template>
+        </ng-template>
+
+
+
       </ul>
 
       <p appBasicHighlight>Basic Style Test</p>

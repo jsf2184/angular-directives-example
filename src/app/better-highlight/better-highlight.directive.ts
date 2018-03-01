@@ -4,6 +4,12 @@ import {Directive, ElementRef, HostBinding, HostListener, Input, OnInit, Rendere
   selector: '[appBetterHighlight]'
 })
 export class BetterHighlightDirective implements OnInit {
+
+  // This class changes backgroundColor with 3 different techniques.
+  //  - Setup hostBinding so it is as easy as setting an attribute (see onMouseLeave())
+  //  - Using a Renderer  (see onMouseUp())
+  //  - Going straight to the dom element (see onMouseDown())
+
   // On the element that this directive is on, bind the style backgroundColor to this string.
   @HostBinding('style.backgroundColor') backgroundColor: string;
 
@@ -27,10 +33,8 @@ export class BetterHighlightDirective implements OnInit {
 
   @HostListener('mousedown') onMouseDown(eventData: Event) {
     console.log('BetterHighlightDirective.onMouseDown(): ' + eventData);
-    // set the style with the renderer
-    this.renderer.setStyle(this.elementRef.nativeElement,
-      'background-color',
-      this.mouseDownColor);
+    // set the style by going straight to the DOM element
+    this.elementRef.nativeElement.style.backgroundColor = this.mouseDownColor;
   }
 
   @HostListener('mouseup') onMouseUp(eventData: Event) {
