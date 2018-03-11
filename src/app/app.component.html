@@ -11,9 +11,8 @@
       <ul class="list-group">
         <div *ngIf="onlyOdd">
           <li
-            class="list-group-item"
-            [ngClass]="{odd: number %2 !=0}"
-            [ngStyle]="{backgroundColor: number %2 !== 0 ? 'yellow' : 'transparent'}"
+            class="list-group-item odd"
+            style="background-color: yellow"
             *ngFor="let number of oddNumbers"
           >
             {{number}}
@@ -22,11 +21,9 @@
 
         <!-- Do the odd list a 2nd time, using our custom appUnless directive, unless its even -->
         <div *appUnless="!onlyOdd">
-          <li
-            class="list-group-item"
-            [ngClass]="{odd: number %2 !=0}"
-            [ngStyle]="{backgroundColor: number %2 !== 0 ? 'yellow' : 'transparent'}"
-            *ngFor="let number of oddNumbers"
+          <li style="background-color: yellow"
+              class="list-group-item odd"
+              *ngFor="let number of oddNumbers"
           >
             {{number}}
           </li>
@@ -35,9 +32,8 @@
         <!-- Here is the easier way to do the list with *ngIf and *ngFor -->
         <div *ngIf="!onlyOdd">
           <li
-            class="list-group-item"
-            [ngClass]="{even: number %2 ==0}"
-            [ngStyle]="{backgroundColor: number %2 !== 0 ? 'yellow' : 'transparent'}"
+            class="list-group-item even"
+            style="background-color: transparent"
             *ngFor="let number of evenNumbers"
           >
             {{number}}
@@ -48,17 +44,13 @@
         <ng-template [ngIf]="!onlyOdd">
           <ng-template ngFor let-number [ngForOf]="evenNumbers">
             <li
-              class="list-group-item"
-              [ngClass]="{even: number %2 ==0}"
-              [ngStyle]="{backgroundColor: number %2 !== 0 ? 'yellow' : 'transparent'}"
+              class="list-group-item even"
+              style="background-color: transparent"
             >
               {{number}}
             </li>
           </ng-template>
         </ng-template>
-
-
-
       </ul>
 
       <p appBasicHighlight>Basic Style Test</p>
