@@ -29,7 +29,17 @@
           </li>
         </div>
 
-        <!-- Here is the easier way to do the list with *ngIf and *ngFor -->
+        <!-- Do the odd list a 3rd time, using our custom appUnless directive with ng-template -->
+        <ng-template [appUnless] = "!onlyOdd">
+          <li style="background-color: yellow"
+              class="list-group-item odd"
+              *ngFor="let number of oddNumbers"
+          >
+            {{number}}
+          </li>
+        </ng-template>
+
+        <!-- Here is the easier way to do the evens list -->
         <div *ngIf="!onlyOdd">
           <li
             class="list-group-item even"
@@ -54,12 +64,13 @@
       </ul>
 
       <p appBasicHighlight>Basic Style Test</p>
+      <p appBetterHighlight defaultColor="orange">Better Style Test</p>
 
-      <p appBetterHighlight
-      mouseDownColor='orange'
-      [mouseEnterColor]="'pink'"
+      <p appBestHighlight
+      mouseDownColor='lightblue'
+      [mouseEnterColor]="'yellow'"
       >
-        Better Style Test
+        Best Style Test
       </p>
 
       <div [ngSwitch]="value">
